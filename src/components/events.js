@@ -30,7 +30,7 @@ const Events = ({ upcomingLimit, pastLimit }) => {
     `
   )
 
-  const upcomingtEvents = query.allMdx.edges.filter(event => {
+  const upcomingEvents = query.allMdx.edges.filter(event => {
     const eventDate = event.node.frontmatter?.date
     const startDate = new Date(eventDate)
     return eventDate ? startDate > date : false
@@ -47,7 +47,7 @@ const Events = ({ upcomingLimit, pastLimit }) => {
       <Map className="absolute -z-1 top-12 left-[40%] h-auto w-[140%] sm:w-[1700px] text-[#4d8dff]" />
 
       <Container>
-        {upcomingtEvents.length > 0 && (
+        {upcomingEvents.length > 0 && (
           <React.Fragment>
             <h2>
               Upcomings <span className="text-accent">Events</span>
@@ -55,7 +55,7 @@ const Events = ({ upcomingLimit, pastLimit }) => {
             <p>Today, {date.toDateString()}</p>
 
             <div className="mt-12 max-w-4xl space-y-7">
-              {upcomingtEvents.map(
+              {upcomingEvents.map(
                 (item, index) =>
                   index < upcomingLimit && (
                     <CardEvent
@@ -83,7 +83,7 @@ const Events = ({ upcomingLimit, pastLimit }) => {
               Past <span className="text-accent">Events</span>
             </h2>
 
-            <Grid md={2} xl={3} className="pr-6 pt-4 pb-6 lg:gap-12">
+            <Grid md={2} xl={3} className="pt-4 pb-6">
               {pastEvents.map(
                 (item, index) =>
                   index < pastLimit && (
